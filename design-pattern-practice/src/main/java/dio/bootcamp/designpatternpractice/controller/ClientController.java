@@ -11,35 +11,33 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ClientController {
 
-    @Autowired
-    private ClientService clientService;
+  @Autowired private ClientService clientService;
 
-    @GetMapping
-    public ResponseEntity<Iterable<Client>> findll() {
-        return ResponseEntity.ok(clientService.findAll());
+  @GetMapping
+  public ResponseEntity<Iterable<Client>> findll() {
+    return ResponseEntity.ok(clientService.findAll());
+  }
 
-    }
+  @GetMapping("/{id}")
+  public ResponseEntity<Client> findById(@PathVariable Long id) {
+    return ResponseEntity.ok(clientService.findById(id));
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Client> findById(@PathVariable Long id){
-        return ResponseEntity.ok(clientService.findById(id));
-    }
+  @PostMapping
+  public ResponseEntity<Client> create(@RequestBody Client client) {
+    clientService.add(client);
+    return ResponseEntity.status(HttpStatus.CREATED).body(client);
+  }
 
-    @PostMapping
-    public ResponseEntity<Client> create(@RequestBody Client client){
-        clientService.add(client);
-        return ResponseEntity.status(HttpStatus.CREATED).body(client);
-    }
+  @PutMapping("/{id}")
+  public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody Client client) {
+    clientService.update(id, client);
+    return ResponseEntity.ok(client);
+  }
 
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody Client client){
-        clientService.update(id, client);
-        return ResponseEntity.ok(client);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        clientService.delete(id);
-        return ResponseEntity.ok().build();
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Long id) {
+    clientService.delete(id);
+    return ResponseEntity.ok().build();
+  }
 }
