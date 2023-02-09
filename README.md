@@ -1,5 +1,5 @@
 ## Prática de Padrões de Projeto
-Projeto prático sobre padrões de projeto realizado durante o Orange Tech + | BackEnd Java da Digital Innovation One.
+Projeto prático sobre padrões de projeto realizado durante o bootcamp Orange Tech + | BackEnd Java da Digital Innovation One.
 
 Padrões:
 
